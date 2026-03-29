@@ -18,13 +18,23 @@ class GameSessionFactory extends Factory
     public function definition(): array
     {
         return [
-            'game_type' => 'memory',
-            'theme' => 'default',
-            'pairs_count' => $this->faker->numberBetween(4, 16),
+            'game_type' => 'memo-test',
+            'theme' => 'animals',
+            'pairs_count' => $this->faker->randomElement([3, 4, 6]),
             'attempts' => 0,
             'duration_seconds' => null,
             'status' => 'in_progress',
             'completed_at' => null,
         ];
+    }
+
+    public function completed(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => 'completed',
+            'attempts' => $this->faker->numberBetween(6, 20),
+            'duration_seconds' => $this->faker->numberBetween(30, 300),
+            'completed_at' => now()->subMinutes($this->faker->numberBetween(1, 60)),
+        ]);
     }
 }
