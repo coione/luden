@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background -->
+  <rect width="200" height="200" rx="24" fill="#FFF8E1"/>
+
+  <!-- Mane outer (spiky ring using star-like polygon) -->
+  <circle cx="100" cy="108" r="76" fill="#C4700A"/>
+  <!-- Mane texture circles -->
+  <circle cx="100" cy="36" r="14" fill="#D4820E"/>
+  <circle cx="138" cy="50" r="14" fill="#D4820E"/>
+  <circle cx="162" cy="82" r="14" fill="#D4820E"/>
+  <circle cx="162" cy="122" r="14" fill="#D4820E"/>
+  <circle cx="142" cy="158" r="14" fill="#D4820E"/>
+  <circle cx="100" cy="172" r="14" fill="#D4820E"/>
+  <circle cx="58" cy="158" r="14" fill="#D4820E"/>
+  <circle cx="38" cy="122" r="14" fill="#D4820E"/>
+  <circle cx="38" cy="82" r="14" fill="#D4820E"/>
+  <circle cx="62" cy="50" r="14" fill="#D4820E"/>
+
+  <!-- Mane inner -->
+  <circle cx="100" cy="108" r="60" fill="#E8A420"/>
+
+  <!-- Ears -->
+  <circle cx="54" cy="68" r="18" fill="#C4700A"/>
+  <circle cx="146" cy="68" r="18" fill="#C4700A"/>
+  <circle cx="54" cy="68" r="11" fill="#F4B830"/>
+  <circle cx="146" cy="68" r="11" fill="#F4B830"/>
+
+  <!-- Face -->
+  <circle cx="100" cy="108" r="52" fill="#F5C842"/>
+
+  <!-- Eyes white -->
+  <circle cx="82" cy="98" r="15" fill="white"/>
+  <circle cx="118" cy="98" r="15" fill="white"/>
+  <!-- Iris -->
+  <circle cx="84" cy="100" r="10" fill="#D4700A"/>
+  <circle cx="120" cy="100" r="10" fill="#D4700A"/>
+  <!-- Pupil -->
+  <circle cx="84" cy="100" r="6" fill="#1A1A1A"/>
+  <circle cx="120" cy="100" r="6" fill="#1A1A1A"/>
+  <!-- Eye shine -->
+  <circle cx="80" cy="96" r="3" fill="white"/>
+  <circle cx="116" cy="96" r="3" fill="white"/>
+
+  <!-- Snout -->
+  <ellipse cx="100" cy="122" rx="28" ry="20" fill="#E8A820"/>
+
+  <!-- Nose -->
+  <polygon points="100,110 92,120 108,120" fill="#C45030"/>
+  <!-- Nose shine -->
+  <ellipse cx="97" cy="113" rx="3" ry="2.5" fill="#D86040" opacity="0.7"/>
+
+  <!-- Mouth -->
+  <path d="M 92,120 Q 100,132 108,120" stroke="#1A1A1A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Whiskers -->
+  <line x1="36" y1="120" x2="86" y2="124" stroke="#5A3A0A" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="38" y1="130" x2="86" y2="130" stroke="#5A3A0A" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="114" y1="124" x2="164" y2="120" stroke="#5A3A0A" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+  <line x1="114" y1="130" x2="162" y2="130" stroke="#5A3A0A" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Cheeks -->
+  <circle cx="68" cy="122" r="14" fill="#F0A040" opacity="0.4"/>
+  <circle cx="132" cy="122" r="14" fill="#F0A040" opacity="0.4"/>
+</svg>

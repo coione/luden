@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background -->
+  <rect width="200" height="200" rx="24" fill="#F8F8FF"/>
+
+  <!-- Black ears -->
+  <circle cx="58" cy="54" r="28" fill="#2C2C2C"/>
+  <circle cx="142" cy="54" r="28" fill="#2C2C2C"/>
+  <!-- Ear inner highlights -->
+  <circle cx="58" cy="54" r="14" fill="#404040"/>
+  <circle cx="142" cy="54" r="14" fill="#404040"/>
+
+  <!-- Head -->
+  <circle cx="100" cy="112" r="70" fill="white"/>
+
+  <!-- Body bottom peek -->
+  <ellipse cx="100" cy="192" rx="50" ry="30" fill="#2C2C2C"/>
+
+  <!-- Black eye patches -->
+  <ellipse cx="76" cy="100" rx="24" ry="20" fill="#2C2C2C" transform="rotate(-15, 76, 100)"/>
+  <ellipse cx="124" cy="100" rx="24" ry="20" fill="#2C2C2C" transform="rotate(15, 124, 100)"/>
+
+  <!-- Eyes white -->
+  <circle cx="76" cy="100" r="13" fill="white"/>
+  <circle cx="124" cy="100" r="13" fill="white"/>
+  <!-- Iris -->
+  <circle cx="78" cy="102" r="9" fill="#1A2A3A"/>
+  <circle cx="126" cy="102" r="9" fill="#1A2A3A"/>
+  <!-- Pupil -->
+  <circle cx="78" cy="102" r="5.5" fill="#050A10"/>
+  <circle cx="126" cy="102" r="5.5" fill="#050A10"/>
+  <!-- Eye shine -->
+  <circle cx="74" cy="98" r="3" fill="white"/>
+  <circle cx="122" cy="98" r="3" fill="white"/>
+
+  <!-- Nose -->
+  <ellipse cx="100" cy="124" rx="13" ry="10" fill="#3D3D3D"/>
+  <!-- Nose shine -->
+  <ellipse cx="96" cy="121" rx="4" ry="3" fill="#606060"/>
+
+  <!-- Mouth -->
+  <path d="M 86,134 Q 100,148 114,134" stroke="#2C2C2C" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Cheeks -->
+  <circle cx="64" cy="130" r="16" fill="#FFB6C1" opacity="0.55"/>
+  <circle cx="136" cy="130" r="16" fill="#FFB6C1" opacity="0.55"/>
+
+  <!-- Bamboo accent -->
+  <rect x="158" y="140" width="10" height="50" rx="5" fill="#6BBF4E"/>
+  <line x1="158" y1="156" x2="168" y2="156" stroke="#5AAF3E" stroke-width="2"/>
+  <line x1="158" y1="168" x2="168" y2="168" stroke="#5AAF3E" stroke-width="2"/>
+  <line x1="158" y1="180" x2="168" y2="180" stroke="#5AAF3E" stroke-width="2"/>
+</svg>

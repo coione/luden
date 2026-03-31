@@ -6,5 +6,5 @@ export const animals: ThemeConfig = {
     icon: '🐾',
     images: ['cat', 'dog', 'elephant', 'giraffe', 'lion', 'monkey', 'panda', 'rabbit'],
     basePath: '/images/themes/animals',
-    extension: '.webp',
+    extension: '.svg',
 };

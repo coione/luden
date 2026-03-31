@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background gradient via rect + overlay -->
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#4C1D95"/>
+    </radialGradient>
+    <radialGradient id="star-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#F59E0B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" rx="24" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern dots -->
+  <circle cx="20" cy="20" r="2" fill="white" opacity="0.15"/>
+  <circle cx="60" cy="20" r="2" fill="white" opacity="0.15"/>
+  <circle cx="100" cy="20" r="2" fill="white" opacity="0.15"/>
+  <circle cx="140" cy="20" r="2" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="20" r="2" fill="white" opacity="0.15"/>
+  <circle cx="20" cy="60" r="2" fill="white" opacity="0.15"/>
+  <circle cx="60" cy="60" r="2" fill="white" opacity="0.15"/>
+  <circle cx="140" cy="60" r="2" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="60" r="2" fill="white" opacity="0.15"/>
+  <circle cx="20" cy="100" r="2" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="100" r="2" fill="white" opacity="0.15"/>
+  <circle cx="20" cy="140" r="2" fill="white" opacity="0.15"/>
+  <circle cx="60" cy="140" r="2" fill="white" opacity="0.15"/>
+  <circle cx="140" cy="140" r="2" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="140" r="2" fill="white" opacity="0.15"/>
+  <circle cx="20" cy="180" r="2" fill="white" opacity="0.15"/>
+  <circle cx="60" cy="180" r="2" fill="white" opacity="0.15"/>
+  <circle cx="100" cy="180" r="2" fill="white" opacity="0.15"/>
+  <circle cx="140" cy="180" r="2" fill="white" opacity="0.15"/>
+  <circle cx="180" cy="180" r="2" fill="white" opacity="0.15"/>
+
+  <!-- Small scattered stars -->
+  <!-- Star helper: 5-point using polygon -->
+  <polygon points="30,42 32,36 34,42 40,42 35,46 37,52 32,48 27,52 29,46 24,42"
+           fill="#FDE68A" opacity="0.7" transform="scale(0.55) translate(20, 20)"/>
+  <polygon points="30,42 32,36 34,42 40,42 35,46 37,52 32,48 27,52 29,46 24,42"
+           fill="#FDE68A" opacity="0.6" transform="translate(152, 22) scale(0.45)"/>
+  <polygon points="30,42 32,36 34,42 40,42 35,46 37,52 32,48 27,52 29,46 24,42"
+           fill="#FDE68A" opacity="0.65" transform="translate(18, 145) scale(0.4)"/>
+  <polygon points="30,42 32,36 34,42 40,42 35,46 37,52 32,48 27,52 29,46 24,42"
+           fill="white" opacity="0.5" transform="translate(155, 148) scale(0.5)"/>
+
+  <!-- Sparkle dots -->
+  <circle cx="48" cy="158" r="3" fill="#FDE68A" opacity="0.7"/>
+  <circle cx="155" cy="50" r="2.5" fill="#FDE68A" opacity="0.6"/>
+  <circle cx="170" cy="100" r="2" fill="white" opacity="0.5"/>
+  <circle cx="30" cy="100" r="2" fill="white" opacity="0.5"/>
+
+  <!-- Central star glow -->
+  <circle cx="100" cy="100" r="55" fill="url(#star-glow)"/>
+
+  <!-- Main central star -->
+  <polygon points="100,52 108,84 142,84 116,104 126,136 100,116 74,136 84,104 58,84 92,84"
+           fill="#FDE68A" stroke="#F59E0B" stroke-width="1.5"/>
+
+  <!-- Star inner highlight -->
+  <polygon points="100,62 106,82 126,82 110,94 116,114 100,102 84,114 90,94 74,82 94,82"
+           fill="#FFF7CD" opacity="0.6"/>
+
+  <!-- Tiny sparkles around star -->
+  <line x1="100" y1="38" x2="100" y2="30" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="132" y1="48" x2="137" y2="43" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="152" y1="78" x2="160" y2="76" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="68" y1="48" x2="63" y2="43" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="78" x2="40" y2="76" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+</svg>
