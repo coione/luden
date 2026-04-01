@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background -->
+  <rect width="200" height="200" rx="24" fill="#F2FFF2"/>
+
+  <!-- Ears outer -->
+  <circle cx="38" cy="100" r="26" fill="#7B4A2D"/>
+  <circle cx="162" cy="100" r="26" fill="#7B4A2D"/>
+  <!-- Ears inner -->
+  <circle cx="38" cy="100" r="17" fill="#D2956B"/>
+  <circle cx="162" cy="100" r="17" fill="#D2956B"/>
+
+  <!-- Head -->
+  <circle cx="100" cy="100" r="64" fill="#7B4A2D"/>
+
+  <!-- Face patch -->
+  <ellipse cx="100" cy="114" rx="46" ry="52" fill="#D2956B"/>
+
+  <!-- Eyes white -->
+  <circle cx="78" cy="90" r="15" fill="white"/>
+  <circle cx="122" cy="90" r="15" fill="white"/>
+  <!-- Iris -->
+  <circle cx="80" cy="92" r="10" fill="#3D2B1F"/>
+  <circle cx="124" cy="92" r="10" fill="#3D2B1F"/>
+  <!-- Pupil -->
+  <circle cx="80" cy="92" r="6" fill="#1A1A1A"/>
+  <circle cx="124" cy="92" r="6" fill="#1A1A1A"/>
+  <!-- Eye shine -->
+  <circle cx="77" cy="88" r="3" fill="white"/>
+  <circle cx="121" cy="88" r="3" fill="white"/>
+
+  <!-- Eyebrows -->
+  <path d="M 66,76 Q 78,69 90,76" stroke="#4A2A10" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <path d="M 110,76 Q 122,69 134,76" stroke="#4A2A10" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Nostrils -->
+  <ellipse cx="93" cy="116" rx="6" ry="5" fill="#B07050"/>
+  <ellipse cx="107" cy="116" rx="6" ry="5" fill="#B07050"/>
+
+  <!-- Big smile -->
+  <path d="M 76,128 Q 100,154 124,128" stroke="#4A2A10" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Teeth -->
+  <path d="M 80,132 Q 100,152 120,132 L 120,138 Q 100,156 80,138 Z" fill="white"/>
+  <line x1="100" y1="132" x2="100" y2="148" stroke="#D2956B" stroke-width="2"/>
+
+  <!-- Cheeks -->
+  <circle cx="62" cy="122" r="14" fill="#E8706A" opacity="0.35"/>
+  <circle cx="138" cy="122" r="14" fill="#E8706A" opacity="0.35"/>
+</svg>

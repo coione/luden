@@ -1,58 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Luden
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An educational gaming platform for young children, built as a portfolio-quality monolith using Laravel + Vue 3 + Inertia.js. The first game is a memory-matching card game designed for toddlers.
 
-## About Laravel
+## Stack
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+| Layer | Technology |
+|-------|-----------|
+| Backend | PHP 8.3+, Laravel 13 |
+| Frontend | Vue 3, TypeScript, Inertia.js 2 |
+| Styling | Tailwind CSS 4 |
+| Database | MySQL 8.4 (dev), SQLite in-memory (tests) |
+| Cache / Queue | Redis |
+| Build | Vite 8, vue-tsc |
+| Testing | Pest 4 (backend), Vitest 4 (frontend) |
+| Static Analysis | PHPStan level max, ESLint, Prettier |
+| DevOps | Laravel Sail (Docker), GitHub Actions CI |
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Prerequisites
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Docker Desktop (no local PHP or Node required — everything runs in containers)
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Setup
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone the repository
+git clone https://github.com/coione/luden.git
+cd luden
 
-php artisan boost:install
+# 2. Install Composer dependencies via Docker
+docker run --rm -u "$(id -u):$(id -g)" \
+  -v "$(pwd):/var/www/html" \
+  -w /var/www/html \
+  laravelsail/php85-composer:latest \
+  composer install --ignore-platform-reqs
+
+# 3. Copy environment file and generate app key
+cp .env.example .env
+./vendor/bin/sail artisan key:generate
+
+# 4. Start all services
+./vendor/bin/sail up -d
+
+# 5. Run database migrations
+./vendor/bin/sail artisan migrate
+
+# 6. Install Node dependencies and start Vite
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+The app is available at **http://localhost**.
 
-## Contributing
+## Commands
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+# Development
+sail up -d                          # Start Docker services (detached)
+sail down                           # Stop all services
+sail npm run dev                    # Start Vite dev server with HMR
 
-## Code of Conduct
+# Database
+sail artisan migrate                # Run pending migrations
+sail artisan migrate:fresh --seed   # Reset database and seed
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Testing
+sail test                           # Run Pest PHP tests
+sail npm test                       # Run Vitest frontend tests
+sail npm run test:watch             # Vitest in watch mode
 
-## Security Vulnerabilities
+# Code Quality
+sail artisan pint                   # Fix PHP code style (PSR-12)
+sail artisan pint --test            # Check PHP style without fixing
+sail vendor/bin/phpstan analyse     # Static analysis (level max)
+sail npm run lint                   # ESLint
+sail npm run lint:fix               # ESLint with auto-fix
+sail npm run format                 # Prettier
+sail npm run format:check           # Prettier check only
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Production
+sail npm run build                  # Type-check + compile assets
+```
+
+## Project Structure
+
+```
+luden/
+├── app/
+│   ├── Games/MemoTest/              # Game domain: ThemeRegistry
+│   ├── Http/
+│   │   ├── Controllers/Games/       # GameSessionController
+│   │   ├── Requests/Games/          # StoreGameSessionRequest, UpdateGameSessionRequest
+│   │   └── Resources/               # GameSessionResource (response normalization)
+│   ├── Models/                      # User, GameSession (ULID primary keys)
+│   └── Policies/                    # GameSessionPolicy (ownership gates)
+├── resources/js/
+│   ├── Components/Games/MemoTest/   # GameCard, GameBoard, GameHeader, WinCelebration
+│   ├── Composables/Games/MemoTest/  # useGameState, useTimer, useAudio
+│   ├── Games/MemoTest/themes/       # Theme system (animals — extensible)
+│   ├── Pages/Games/MemoTest/        # Index (config), Play, History
+│   └── types/                       # TypeScript interfaces
+├── public/images/
+│   ├── themes/animals/              # SVG card illustrations (8 animals)
+│   └── card-back.svg                # Card back design
+├── tests/Feature/Games/             # Pest integration tests
+└── .github/workflows/ci.yml         # CI pipeline
+```
+
+## Games
+
+### Memo Test — `/games/memo-test`
+
+A classic memory card-matching game.
+
+**Game flow:**
+1. Parent authenticates and opens the config screen
+2. Selects a theme (Animals) and pair count (3, 4, or 6)
+3. A `GameSession` record is created (`status: in_progress`)
+4. The play screen renders the shuffled board
+5. Cards flip with a 3D animation; matching pairs stay revealed
+6. On win, the result is persisted (`status: completed`, attempts, duration)
+7. Game history is available at `/games/memo-test/history`
+
+**Extending themes:** Add a `ThemeConfig` entry to the frontend theme registry and a matching slug to the backend `ThemeRegistry`. No other changes required.
+
+## Documentation
+
+- [Architecture](docs/architecture.md) — system design, backend, frontend, database schema, data flow
+- [Design Decisions](docs/design.md) — rationale behind key engineering choices and patterns
+
+## CI
+
+GitHub Actions runs two parallel jobs on every push and PR to `main`:
+
+| Job | Steps |
+|-----|-------|
+| Backend | Pint → PHPStan (level max) → Pest |
+| Frontend | ESLint → Prettier → vue-tsc → Vitest |
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+MIT

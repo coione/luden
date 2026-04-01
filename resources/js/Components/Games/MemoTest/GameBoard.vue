@@ -30,7 +30,7 @@ const columns = computed(() => {
                 :key="card.id"
                 :card="card"
                 :can-flip="canFlip"
-                card-back-src="/images/card-back.webp"
+                card-back-src="/images/card-back.svg"
                 @flip="emit('flip', card.id)"
             />
         </div>

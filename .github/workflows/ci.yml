@@ -23,6 +23,12 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Generate app key
+        run: php artisan key:generate --ansi
+
       - name: Code style (Pint)
         run: vendor/bin/pint --test
 
@@ -49,6 +55,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Setup PHP (for Ziggy types)
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mbstring, xml, ctype, json
+          coverage: none
+
+      - name: Install Composer dependencies (for Ziggy types)
+        run: composer install --no-interaction --no-scripts --prefer-dist
 
       - name: Lint (ESLint)
         run: npm run lint
