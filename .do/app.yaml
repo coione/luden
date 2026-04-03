@@ -1,0 +1,130 @@
+# DigitalOcean App Platform specification
+# Docs: https://docs.digitalocean.com/products/app-platform/reference/app-spec/
+#
+# Usage:
+#   1. Replace `coione/luden` with your actual GitHub repo slug.
+#   2. Create the app via the DO dashboard or:
+#        doctl apps create --spec .do/app.yaml
+#   3. Set APP_KEY via the dashboard after first deploy:
+#        php artisan key:generate --show
+#      Then paste the output into the APP_KEY secret.
+
+name: luden
+region: nyc
+
+# ---------------------------------------------------------------------------
+# Web service
+# ---------------------------------------------------------------------------
+services:
+  - name: web
+    github:
+      repo: coione/luden
+      branch: main
+      deploy_on_push: true
+
+    # Build: install PHP deps, build frontend assets
+    build_command: |
+      composer install --no-dev --optimize-autoloader
+      npm ci
+      npm run build
+
+    # Run: cache Laravel config/routes/views, then start Apache+PHP
+    # heroku-php-apache2 is provided by the Heroku PHP buildpack that
+    # DO App Platform applies automatically when it detects composer.json
+    run_command: php artisan optimize && vendor/bin/heroku-php-apache2 public/
+
+    http_port: 8080
+    instance_size_slug: apps-s-1vcpu-0.5gb
+    instance_count: 1
+
+    routes:
+      - path: /
+
+    envs:
+      - key: APP_NAME
+        value: Luden
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      # APP_URL is auto-populated by DO with the deployed app URL
+      - key: APP_URL
+        value: ${APP_URL}
+      # Set this secret after first deploy: php artisan key:generate --show
+      - key: APP_KEY
+        type: SECRET
+        value: ""
+
+      # Database — bound from the managed DB defined below
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: ${db.HOSTNAME}
+      - key: DB_PORT
+        value: ${db.PORT}
+      - key: DB_DATABASE
+        value: ${db.DATABASE}
+      - key: DB_USERNAME
+        value: ${db.USERNAME}
+      - key: DB_PASSWORD
+        type: SECRET
+        value: ${db.PASSWORD}
+
+      # Use database-backed session/cache/queue (no Redis needed to start)
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: database
+
+      # Send logs to stdout/stderr so DO captures them
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: error
+
+# ---------------------------------------------------------------------------
+# Post-deploy job: run migrations after every new release
+# ---------------------------------------------------------------------------
+jobs:
+  - name: migrate
+    github:
+      repo: coione/luden
+      branch: main
+    kind: POST_DEPLOY
+    build_command: composer install --no-dev --optimize-autoloader
+    run_command: php artisan migrate --force --no-interaction
+    instance_size_slug: apps-s-1vcpu-0.5gb
+
+    envs:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        type: SECRET
+        value: ""
+      - key: DB_CONNECTION
+        value: mysql
+      - key: DB_HOST
+        value: ${db.HOSTNAME}
+      - key: DB_PORT
+        value: ${db.PORT}
+      - key: DB_DATABASE
+        value: ${db.DATABASE}
+      - key: DB_USERNAME
+        value: ${db.USERNAME}
+      - key: DB_PASSWORD
+        type: SECRET
+        value: ${db.PASSWORD}
+
+# ---------------------------------------------------------------------------
+# Managed MySQL 8 database
+# ---------------------------------------------------------------------------
+databases:
+  - name: db
+    engine: MYSQL
+    version: "8"
+    # db-s-dev-database = free development tier (not for production traffic)
+    # Upgrade to db-s-1vcpu-1gb or higher for real traffic
+    size: db-s-dev-database
+    num_nodes: 1
